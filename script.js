@@ -151,19 +151,15 @@ const colors = [
 const colorGrid = document.querySelector("#color-grid");
 
 // Function to check if the color is light or dark
-function isColorDark(color) {
+function displayColors(color) {
   const context = document.createElement("canvas").getContext("2d");
   context.fillStyle = color;
-  const rgb = context.fillStyle.match(/\d+/g).map(Number);
-  // Calculate the brightness using the formula (r*299 + g*587 + b*114) / 1000
-  const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-  return brightness < 128; // Dark if brightness is less than 128
 }
 
 // Function to add colors to the grid
 function addColorsToGrid(colorArray) {
   colorArray.forEach((color) => {
-    const textColor = isColorDark(color) ? "white" : "black";
+    const textColor = displayColors(color) ? "white" : "black";
     const colorBoxHTML = `
       <div class="color-box" style="background-color: ${color}; color: ${textColor};">
         ${color}
@@ -176,13 +172,3 @@ function addColorsToGrid(colorArray) {
 // Initial render of colors
 addColorsToGrid(colors);
 
-// Adding a new color dynamically
-document.querySelector("#add-color").addEventListener("click", () => {
-  const newColor = document.querySelector("#color-input").value.trim();
-  if (newColor) {
-    colors.push(newColor); // Add to the array
-    colorGrid.innerHTML = ""; // Clear the grid
-    addColorsToGrid(colors); // Re-render all colors
-    document.querySelector("#color-input").value = ""; // Clear input
-  }
-});

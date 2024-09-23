@@ -10,7 +10,7 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 125px); 
+  grid-template-columns: repeat(10, 125px); 
   grid-gap: 10px;
   grid-auto-rows: 125px; 
   margin-top: 20px;
@@ -27,6 +27,8 @@ body {
   font-size: 14px;
   text-align: center;
   border-radius: 50%;
+  border-color: black;
+  border-style: dashed;
 }
 
 input, button {
